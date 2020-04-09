@@ -25,7 +25,7 @@ jobs:
         - if: startsWith(matrix.os, 'macOS')
           run: brew install gcc openblas
         - if: startsWith(matrix.os, 'ubuntu')
-          run: sudo apt install libopenblas-dev libgfortran-dev
+          run: sudo apt install libopenblas-dev libgfortran-7-dev
         - name: Test building & installing Rust extension
           run: cd native && pip install . && cd ..
 
