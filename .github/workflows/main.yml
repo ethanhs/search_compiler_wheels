@@ -27,7 +27,7 @@ jobs:
         - if: startsWith(matrix.os, 'ubuntu')
           run: sudo apt install libopenblas-dev libgfortran-7-dev
         - name: Test building & installing Rust extension
-          run: cd native && pip install . && cd ..
+          run: cd native && cargo build && cd ..
 
         - name: Test installed package is importable
           run: python -c 'import search_compiler_rs'
