@@ -22,12 +22,11 @@ jobs:
           with:
               toolchain: nightly-2020-01-23
               override: true
-        - name: Install blas/gfortran (ubuntu)
-          run: sudo apt install libopenblas-dev libgfortran-dev
-          if: matrix.os == "ubuntu-latest"
-        - name: Install blas/gfortran (macOS)
+        - name: Install blas/gfortran
+        - if: startsWith(matrix.os, 'macOS')
           run: brew install gcc openblas
-          if: matrix.os == "macOS-latest"
+        - if: startsWith(matrix.os, 'ubuntu')
+          run: sudo apt install libopenblas-dev libgfortran-dev
         - name: Test building & installing Rust extension
           run: cd native && pip install . && cd ..
 
