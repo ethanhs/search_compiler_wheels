@@ -23,7 +23,7 @@ jobs:
               override: true
 
         - name: Test building & installing Rust extension
-          run: cd native && pip install . && cd ..
+          run: cd native && pip install -U pip && pip install . && cd ..
 
         - name: Test installed package is importable
           run: python -c 'import search_compiler_rs'
