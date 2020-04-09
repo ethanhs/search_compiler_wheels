@@ -22,7 +22,6 @@ jobs:
           with:
               toolchain: nightly-2020-01-23
               override: true
-        - name: Install blas/gfortran
         - if: startsWith(matrix.os, 'macOS')
           run: brew install gcc openblas
         - if: startsWith(matrix.os, 'ubuntu')
