@@ -12,6 +12,7 @@ jobs:
           uses: actions/checkout@v2
           with:
             repository: 'Wolflink/search_compiler'
+            ref: dev
         - name: setup python
           uses: actions/setup-python@v1
           with:
@@ -23,7 +24,7 @@ jobs:
               override: true
 
         - name: Test building & installing Rust extension
-          run: cd native && ls -la && cd ..
+          run: cd native && pip install . && cd ..
 
         - name: Test installed package is importable
           run: python -c 'import search_compiler_rs'
