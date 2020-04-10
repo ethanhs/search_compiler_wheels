@@ -32,7 +32,7 @@ jobs:
             RUST_BACKTRACE: 1
           if: startsWith(matrix.os, 'ubuntu')
         - name: Try running maturin (macOS)
-          run: cd native && maturin pep517 build-wheel -i python --manylinux=off && cd ..
+          run: cd native && pip install maturin && maturin pep517 build-wheel -i python --manylinux=off && cd ..
           if: startsWith(matrix.os, 'macOS')
         - name: Test installed package is importable
           run: python -c 'import search_compiler_rs'
