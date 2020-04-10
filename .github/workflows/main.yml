@@ -28,11 +28,18 @@ jobs:
         - if: startsWith(matrix.os, 'ubuntu')
           run: sudo apt install libopenblas-dev libgfortran-7-dev
         - name: Test building & installing Rust extension
-          run: cd native && pip wheel .
+          run: cd native && pip install .
           env:
             RUST_BACKTRACE: 1
+          if: startsWith(matrix.os, 'ubuntu')
+        - name: Build macOS wheels
+          run: cd native && maturin build --cargo-extra-args="--no-default-features --features static" --release
+          env:
+            RUST_BACKTRACE: 1
+          if: startsWith(matrix.os, 'macOS')
         - name: upload wheel artifacts
           uses: actions/upload-artifact@v1
           with:
             name: scrs-wheels-${{matrix.os}}-${{matrix.python-version}}
             path: native/target/wheels 
+          if: startsWith(matrix.os, 'macOS')
