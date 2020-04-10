@@ -35,4 +35,4 @@ jobs:
           uses: actions/upload-artifact@v1
           with:
             name: scrs-wheels-${{matrix.os}}-${{matrix.python-version}}
-            path: target/wheels 
+            path: native/target/wheels 
