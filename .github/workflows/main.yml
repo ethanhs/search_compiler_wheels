@@ -33,7 +33,7 @@ jobs:
             RUST_BACKTRACE: 1
           if: startsWith(matrix.os, 'ubuntu')
         - name: Build macOS wheels
-          run: cd native && maturin build --cargo-extra-args="--no-default-features --features static" --release
+          run: cd native && pip install maturin && maturin build --cargo-extra-args="--no-default-features --features static" --release
           env:
             RUST_BACKTRACE: 1
           if: startsWith(matrix.os, 'macOS')
