@@ -7,6 +7,7 @@ jobs:
       matrix:
         python-version: [3.6,3.7,3.8]
         os: [macOS-latest, ubuntu-latest]
+      fail-fast: false
     steps:
         - name: checkout
           uses: actions/checkout@v2
