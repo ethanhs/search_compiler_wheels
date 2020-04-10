@@ -17,10 +17,10 @@ jobs:
           uses: actions/setup-python@v1
           with:
             python-version: ${{ matrix.python-version }}
-        - name: Install nightly-2020-01-23
+        - name: Install nightly-2020-04-06
           uses: actions-rs/toolchain@v1
           with:
-              toolchain: nightly-2020-01-23
+              toolchain: nightly-2020-04-06
               default: true
         - if: startsWith(matrix.os, 'macOS')
           run: brew install gcc openblas
