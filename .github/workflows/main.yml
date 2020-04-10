@@ -7,6 +7,7 @@ jobs:
       matrix:
         python-version: [3.6,3.7,3.8]
         os: [macOS-latest, ubuntu-latest]
+      fail-fast: false
     steps:
         - name: checkout
           uses: actions/checkout@v2
@@ -27,8 +28,11 @@ jobs:
         - if: startsWith(matrix.os, 'ubuntu')
           run: sudo apt install libopenblas-dev libgfortran-7-dev
         - name: Test building & installing Rust extension
-          run: cd native && pip install . && cd ..
+          run: cd native && pip wheel .
           env:
             RUST_BACKTRACE: 1
-        - name: Test installed package is importable
-          run: python native/tests/test_circuit.py
+        - name: upload wheel artifacts
+          uses: actions/upload-artifact@v1
+          with:
+            name: scrs-wheels-${{matrix.os}}-${{matrix.python-version}}
+            path: target/wheels 
